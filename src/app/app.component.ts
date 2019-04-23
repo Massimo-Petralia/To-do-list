@@ -6,5 +6,13 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'to-do-list massimo';
+  title = 'To do list';
+  id: number;
+  item: string;
+
+  addItem(){
+    var userValue = (<HTMLInputElement>document.getElementById('myInput')).value;
+    console.log(userValue);
+    this.item = userValue;
+  }
 }
