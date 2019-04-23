@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import {Item} from './item';
+
+
 
 @Component({
   selector: 'app-root',
@@ -6,13 +9,20 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'To do list';
-  id: number;
-  item: string;
-
+  header = 'To do list'
+  newItem = new Item();
+  i = 0;
   addItem(){
+    this.i++;
     var userValue = (<HTMLInputElement>document.getElementById('myInput')).value;
-    console.log(userValue);
-    this.item = userValue;
+    this.newItem.id = this.i;
+    this.newItem.title = userValue;
+    
+    console.log(this.newItem);
+    
+    var li = document.createElement('li');
+    li.innerHTML = this.newItem.id+' '+this.newItem.title;
+    document.getElementById('myList').appendChild(li);
+    
   }
 }
