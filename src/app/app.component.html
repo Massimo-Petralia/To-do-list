@@ -6,5 +6,6 @@
   <button (click)="addItem()">create item</button>
   <ul id="myList">
     <li>portare a spasso fuffy</li>
+    <li *ngFor="let newItem of list" >{{newItem.id}} <span>{{newItem.title}}</span></li>
     
   </ul>

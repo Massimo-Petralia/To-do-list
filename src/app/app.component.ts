@@ -1,7 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import {Item} from './item';
-
-
+import {List} from './list';
 
 @Component({
   selector: 'app-root',
@@ -10,19 +9,17 @@ import {Item} from './item';
 })
 export class AppComponent {
   header = 'To do list'
-  newItem = new Item();
+  list = List;
   i = 0;
   addItem(){
     this.i++;
     var userValue = (<HTMLInputElement>document.getElementById('myInput')).value;
-    this.newItem.id = this.i;
-    this.newItem.title = userValue;
-    
-    console.log(this.newItem);
-    
-    var li = document.createElement('li');
-    li.innerHTML = this.newItem.id+' '+this.newItem.title;
-    document.getElementById('myList').appendChild(li);
-    
+    var newItem = new Item();
+    newItem.id = this.i;
+    newItem.title = userValue;
+    this.list.push(newItem);
+
+    console.log(this.list);
   }
+
 }
