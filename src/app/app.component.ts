@@ -12,10 +12,8 @@ export class AppComponent {
   list = List;
   i = 0;
   addItem(){
-    //this.i++;
     var userValue = (<HTMLInputElement>document.getElementById('myInput')).value;
     var newItem = new Item();
-   // newItem.id = '50';
     newItem.title = userValue;
     this.list.push(newItem);
 
@@ -27,8 +25,8 @@ export class AppComponent {
       }
     }
     http.open('POST', "http://localhost:3000/employees", true);
-    http.setRequestHeader("Content-Type", "application/json");
-    http.send('{"title": "valk"}')
+    http.setRequestHeader("content-type", "application/json");
+    http.send(data)
     console.log(data);
   }
 
