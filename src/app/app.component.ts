@@ -12,14 +12,24 @@ export class AppComponent {
   list = List;
   i = 0;
   addItem(){
-    this.i++;
+    //this.i++;
     var userValue = (<HTMLInputElement>document.getElementById('myInput')).value;
     var newItem = new Item();
-    newItem.id = this.i;
+   // newItem.id = '50';
     newItem.title = userValue;
     this.list.push(newItem);
 
-    console.log(this.list);
+    var data = JSON.stringify(newItem) ;
+    var http = new XMLHttpRequest();
+    http.onreadystatechange = function() {
+      if(this.readyState == 4 && this.status == 201) {
+        console.log(this.responseText);
+      }
+    }
+    http.open('POST', "http://localhost:3000/employees", true);
+    http.setRequestHeader("Content-Type", "application/json");
+    http.send('{"title": "valk"}')
+    console.log(data);
   }
 
 }
