@@ -1,33 +1,45 @@
-import { Component, HostListener } from '@angular/core';
-import {Item} from './item';
-import {List} from './list';
+import { Component, HostListener, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { IUser } from './models/user.model';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
+ 
   header = 'To do list'
-  list = List;
-  i = 0;
-  addItem(){
-    var userValue = (<HTMLInputElement>document.getElementById('myInput')).value;
-    var newItem = new Item();
-    newItem.title = userValue;
-    this.list.push(newItem);
+  url = 'http://localhost:3000/employees';
+  users: IUser[];
+  name: string;
+  salary: string;
+  
+  constructor(private http: HttpClient){}
 
-    var data = JSON.stringify(newItem) ;
-    var http = new XMLHttpRequest();
-    http.onreadystatechange = function() {
-      if(this.readyState == 4 && this.status == 201) {
-        console.log(this.responseText);
-      }
-    }
-    http.open('POST', "http://localhost:3000/employees", true);
-    http.setRequestHeader("content-type", "application/json");
-    http.send(data)
-    console.log(data);
+  ngOnInit() {}
+  
+  getData() {
+   this.http.get(this.url).subscribe((users: IUser[]) => {
+     this.users = users
+     console.log(this.users);
+   });
+  }
+  
+  postUser(user: IUser) {
+    this.http.post('http://localhost:3000/employees', user).subscribe(data => {
+      console.log(data)
+    })
+  }
+
+  createUser() {
+    const user: IUser = {name: this.name, salary: this.salary}
+    this.postUser(user);
+  }
+  
+  deleteUser(user: IUser) {
+    this.http.delete('http://localhost:3000/employees/18').subscribe(data =>{console.log(data)});
   }
 
 }
+

@@ -2,10 +2,11 @@
   <h1>
     Welcome to {{ header }}!
   </h1>
-  <input type="text" id="myInput">
-  <button (click)="addItem()">create item</button>
-  <ul id="myList">
-    <li>portare a spasso fuffy</li>
-    <li *ngFor="let newItem of list" >{{newItem.id}} <span>{{newItem.title}}</span></li>
-    
+  <input type="text" [(ngModel)]="name" >
+  <input type="text" [(ngModel)]="salary" >
+  <button (click)="createUser()">create item</button>
+  <button (click)="deleteUser()">delete user</button>
+  <ul>
+    <li *ngFor="let user of users">{{user.name}}</li>
   </ul>
+  <button (click)="getData()">Utenti</button>
