@@ -4,6 +4,7 @@
   </h1>
   <input type="text" [(ngModel)]="title" >
   <button (click)="createItem()">new item</button>
+  <button (click)="getData()">refresh (bottone provvisorio)</button>
   <ul>
     <li *ngFor="let item of items">{{item.title}}</li>
   </ul>

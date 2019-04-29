@@ -29,9 +29,9 @@ export class AppComponent implements OnInit {
     }
     
     createItem() {
-    const newItem: Item = {title: this.title}
-    this.http.post(this.dbUrl, newItem).subscribe((newItem: Item) =>{
-      newItem = newItem;
+    const item: Item = {title: this.title}
+    this.http.post(this.dbUrl, item).subscribe((item: Item) =>{
+    item = item;
     })
     }
 
