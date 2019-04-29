@@ -13,7 +13,7 @@ export class AppComponent implements OnInit {
   header = 'To do list'
   items: Item[];
   dbUrl = 'http://localhost:3000/ToDo';
-  
+  title: string;
   
   constructor(private http: HttpClient){}
 
