@@ -5,3 +5,17 @@ h1{
 .checked{
     color: red;
 }
+
+.gridContainer{
+    display: grid;
+    grid-template-areas:'data input' ;
+}
+.titleArea{
+    grid-area: title;
+}
+.dataArea{
+    grid-area: data;
+}
+.inputArea{
+    grid-area: input;
+}
