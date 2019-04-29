@@ -11,7 +11,7 @@ import { HttpClient } from '@angular/common/http';
 export class AppComponent implements OnInit {
  
   header = 'To do list'
-
+  item: Item[];
  
   
   constructor(private http: HttpClient){}
