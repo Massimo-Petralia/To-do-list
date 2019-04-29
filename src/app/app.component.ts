@@ -11,12 +11,22 @@ import { HttpClient } from '@angular/common/http';
 export class AppComponent implements OnInit {
  
   header = 'To do list'
-  item: Item[];
- 
+  data: Item[];
+  dbUrl = 'http://localhost:3000/ToDo';
+  
   
   constructor(private http: HttpClient){}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.getData() 
+
+    }
+    getData() {
+      this.http.get(this.dbUrl).subscribe(data => {
+        console.log(this.data)
+      })
+    }
+  }
   
  
   
@@ -26,5 +36,5 @@ export class AppComponent implements OnInit {
   
 
 
-}
+
 
