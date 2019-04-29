@@ -11,7 +11,7 @@ import { HttpClient } from '@angular/common/http';
 export class AppComponent implements OnInit {
  
   header = 'To do list'
-  data: Item[];
+  items: Item[];
   dbUrl = 'http://localhost:3000/ToDo';
   
   
@@ -22,8 +22,8 @@ export class AppComponent implements OnInit {
 
     }
     getData() {
-      this.http.get(this.dbUrl).subscribe(data => {
-        console.log(this.data)
+      this.http.get(this.dbUrl).subscribe((items: Item[]) => {
+        this.items = items;
       })
     }
   }
