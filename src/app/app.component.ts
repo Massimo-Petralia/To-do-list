@@ -14,6 +14,7 @@ export class AppComponent implements OnInit {
   items: Item[];
   dbUrl = 'http://localhost:3000/ToDo';
   title: string;
+  item: Item = {title: this.title}
   
   constructor(private http: HttpClient){}
 
@@ -22,10 +23,10 @@ export class AppComponent implements OnInit {
 
     }
     getData() {
-      const item: Item = {title: this.title}
       this.http.get(this.dbUrl).subscribe((items: Item[]) => {
         this.items = items;
-        console.log(this.items)
+        console.log(items);
+        
       })
     }
   }
