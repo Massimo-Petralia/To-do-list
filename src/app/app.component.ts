@@ -20,8 +20,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     this.getData() 
-
-    }
+  }
     getData() {
       this.http.get(this.dbUrl).subscribe((items: Item[]) => {
         this.items = items;
