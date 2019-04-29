@@ -3,6 +3,7 @@
     Welcome to {{ header }}!
   </h1>
   <input type="text" [(ngModel)]="title" >
+  <button (click)="createItem()">new item</button>
   <ul>
     <li *ngFor="let item of items">{{item.title}}</li>
   </ul>

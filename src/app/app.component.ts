@@ -14,7 +14,6 @@ export class AppComponent implements OnInit {
   items: Item[];
   dbUrl = 'http://localhost:3000/ToDo';
   title: string;
-  item: Item = {title: this.title}
   
   constructor(private http: HttpClient){}
 
@@ -28,6 +27,14 @@ export class AppComponent implements OnInit {
         
       })
     }
+    
+    createItem() {
+    const newItem: Item = {title: this.title}
+    this.http.post(this.dbUrl, newItem).subscribe((newItem: Item) =>{
+      newItem = newItem;
+    })
+    }
+
   }
   
  
