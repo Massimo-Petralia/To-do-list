@@ -24,6 +24,7 @@ export class AppComponent implements OnInit {
     getData() {
       this.http.get(this.dbUrl).subscribe((items: Item[]) => {
         this.items = items;
+        console.log(this.items)
       })
     }
   }
