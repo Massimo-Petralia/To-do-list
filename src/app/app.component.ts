@@ -12,17 +12,20 @@ export class AppComponent implements OnInit {
   items: Item[];
   dbUrl = 'http://localhost:3000/ToDo';
   title: string;
+  description: string;
 
   constructor(private http: HttpClient){}
 
   ngOnInit(){
     this.getData();
+    this.title = 'title...';
+    this.description = 'description...';
   }
 
   getData(){
     this.http.get(this.dbUrl).subscribe((items: Item[])=>{
       this.items = items;//assegno l'array items alla proprietà this.item
-      console.log(items);
     })
   }
+  createItem(item: Item){}
 }

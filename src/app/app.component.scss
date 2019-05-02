@@ -1,3 +1,24 @@
 h1{
     background: red;
 }
+
+
+.gridContainer{
+    display: grid;
+    grid-template-areas: 'data line form';
+}
+
+.dataContainer{
+    grid-area: data;
+}
+
+#line{
+    grid-area: line;
+    width: 2px;
+    //height: 100%;
+    background: black;
+}
+
+.formContainer{
+    grid-area: form;
+}

@@ -1,7 +1,15 @@
   <h1>
     Welcome to {{ header }}!
   </h1>
-
-<ul>
+<div class="gridContainer">
+<div class="dataContainer">
+  <ul>
   <li *ngFor="let item of items">{{item.title}}</li>
-</ul>
+  </ul>
+</div>
+<div id="line"></div>
+<div class="formContainer">
+  <input type="text" [(ngModel)]="title">
+  <textarea name="" id="" cols="30" rows="10" [(ngModel)]="description"></textarea>
+</div>
+</div>
