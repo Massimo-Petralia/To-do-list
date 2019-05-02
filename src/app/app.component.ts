@@ -10,12 +10,19 @@ import { HttpClient } from '@angular/common/http';
 export class AppComponent implements OnInit {
   header = 'To do list !';
   items: Item[];
+  dbUrl = 'http://localhost:3000/ToDo';
+  title: string;
 
   constructor(private http: HttpClient){}
 
-  ngOnInit(){}
+  ngOnInit(){
+    this.getData();
+  }
 
   getData(){
-
+    this.http.get(this.dbUrl).subscribe((items: Item[])=>{
+      this.items = items;//assegno l'array items alla proprietà this.item
+      console.log(items);
+    })
   }
 }
