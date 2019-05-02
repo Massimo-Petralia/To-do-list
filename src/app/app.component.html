@@ -5,16 +5,16 @@
   <div class="gridContainer">
    
     <div class="dataArea">
+        <button (click)="newItem()">crea nuovo</button>
       <ul>
-       <li *ngFor="let item of items;">{{item.title}}<button (click)="deleteItem(item)" >cancella</button></li>
+       <li *ngFor="let item of items" (click)="selecItem(item)">{{item.title}}<span *ngIf="item.description != null" style="color: blue"> {{item.description}}</span> <button (click)="deleteItem(item)" >cancella</button></li>
      </ul> 
      </div>
      
      <div class="inputArea">
-     <input type="text" [(ngModel)]="title" >
-     <textarea name="descriptionArea" id="" cols="30" rows="10" [(ngModel)]="description"></textarea>
-     <button (click)="createItem()">new item</button>
-     <button (click)="getData()">refresh (bottone provvisorio)</button>
+     <input id="myTitle" type="text" [(ngModel)]="title" >
+     <textarea id="myText" name="descriptionArea" id="" cols="30" rows="10" [(ngModel)]="description"></textarea>
+     <button (click)="save()">save</button>
      </div>
   </div>
  

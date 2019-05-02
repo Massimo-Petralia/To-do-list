@@ -15,7 +15,9 @@ h1{
 }
 .dataArea{
     grid-area: data;
+    border-right: 1px solid black;
 }
 .inputArea{
     grid-area: input;
+    margin-left: 10px;
 }
