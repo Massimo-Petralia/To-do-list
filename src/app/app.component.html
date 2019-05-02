@@ -3,8 +3,9 @@
   </h1>
 <div class="gridContainer">
 <div class="dataContainer">
+  <button (click)="newItem()">create item</button>
   <ul>
-  <li *ngFor="let item of items">{{item.title}}</li>
+  <li *ngFor="let item of items">{{item.title}}<button (click)="deleteItem(item)">delete</button> </li>
   </ul>
 </div>
 <div id="line"></div>

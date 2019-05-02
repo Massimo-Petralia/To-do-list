@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {Item} from './item.model';
 import { HttpClient } from '@angular/common/http';
+import { Action } from 'rxjs/internal/scheduler/Action';
+
+type action = 'update' | 'create';
 
 @Component({
   selector: 'app-root',
@@ -13,6 +16,8 @@ export class AppComponent implements OnInit {
   dbUrl = 'http://localhost:3000/ToDo';
   title: string;
   description: string;
+  actionType: action;
+  
 
   constructor(private http: HttpClient){}
 
@@ -23,9 +28,25 @@ export class AppComponent implements OnInit {
   }
 
   getData(){
-    this.http.get(this.dbUrl).subscribe((items: Item[])=>{
+    this.http.get(this.dbUrl).subscribe((items: Item[])=>{// specificare sempre il tipo di dato ricevuto dalla chiamata
       this.items = items;//assegno l'array items alla proprietà this.item
     })
   }
-  createItem(item: Item){}
+  createItem(item: Item){
+    this.http.post(this.dbUrl, item).subscribe((_item: Item)=>{// specificare sempre il tipo di dato ricevuto dalla chiamata
+      this.items.push(_item)
+    })
+  }
+
+  deleteItem(item: Item) {
+
+    this.http.delete(this.dbUrl + `/${item.id}`).subscribe((response)=>{
+      this.items = this.items.filter((elem) => elem.id !== item.id)})
+  }
+
+  newItem(){
+    this.title = null;
+    this.description = null;
+    this.actionType = 'create';
+  }
 }
