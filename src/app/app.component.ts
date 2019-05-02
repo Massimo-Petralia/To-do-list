@@ -17,7 +17,7 @@ export class AppComponent implements OnInit {
   title: string;
   description: string;
   actionType: action;
-  
+  itemSelected: Item;
 
   constructor(private http: HttpClient){}
 
@@ -48,5 +48,12 @@ export class AppComponent implements OnInit {
     this.title = null;
     this.description = null;
     this.actionType = 'create';
+  }
+
+  selectedItem(item: Item){
+    this.itemSelected = item;
+    this.title = this.itemSelected.title;
+    this.description = this.itemSelected.description;
+    this.actionType = 'update';
   }
 }
