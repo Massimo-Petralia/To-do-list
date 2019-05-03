@@ -42,7 +42,7 @@ export class AppComponent implements OnInit {
     this.http.put(`${this.dbUrl}/${item.id}`, item).subscribe((response: Item) => {
       this.itemSelected.title = response.title;
       this.itemSelected.description = response.description;
-      this.itemSelected.done = response.done
+      this.itemSelected.done = response.done;
 
     })
   }
@@ -86,6 +86,7 @@ export class AppComponent implements OnInit {
   checkItem(item: Item) {
     item.done = !item.done;
     this.updateItem(item);
+    console.log('ciao');
   }
 
 
