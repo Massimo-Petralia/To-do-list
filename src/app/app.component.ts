@@ -43,7 +43,7 @@ export class AppComponent implements OnInit {
       this.itemSelected.title = response.title;
       this.itemSelected.description = response.description;
       this.itemSelected.done = response.done
-      
+
     })
   }
 
@@ -62,7 +62,6 @@ export class AppComponent implements OnInit {
 
   selectedItem(item: Item) {
     this.itemSelected = item;
-    
     this.title = this.itemSelected.title;
     this.description = this.itemSelected.description;
     this.actionType = 'update';
@@ -70,8 +69,13 @@ export class AppComponent implements OnInit {
 
   save() {
     if (this.actionType === 'update') {
-      const itemToUpdate: Item = { title: this.title, description: this.description, id: this.itemSelected.id, done: this.itemSelected.done };
-     this.updateItem(itemToUpdate);
+      const itemToUpdate: Item = {
+        title: this.title,
+        description: this.description,
+        id: this.itemSelected.id,
+        done: this.itemSelected.done
+      };
+      this.updateItem(itemToUpdate);
     } else {
       const itemToCreate: Item = { title: this.title, description: this.description, done: false };
       this.createItem(itemToCreate);
@@ -80,7 +84,7 @@ export class AppComponent implements OnInit {
   }
 
   checkItem(item: Item) {
-    item.done = true;
+    item.done = !item.done;
     this.updateItem(item);
   }
 
