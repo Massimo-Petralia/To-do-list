@@ -86,6 +86,7 @@ export class AppComponent implements OnInit {
   checkItem(item: Item) {
     item.done = !item.done;
     this.updateItem(item);
+    ciccio
   }
 
 
