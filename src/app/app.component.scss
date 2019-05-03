@@ -21,6 +21,27 @@ h1{
 
 .formContainer{
     grid-area: form;
+    display: flex;
+    flex-direction: column;
+   
+}
+
+#titleInput{
+    max-width: 250px;
+    margin-bottom: 10px;
+}
+#descriptionInput{
+    max-width: 250px;
+    margin-bottom: 10px;
+
+ 
+}
+
+#saveButton{
+    max-width: 250px;
+    align-self: flex-start;
+    margin-top: 10px;
+
 }
 
 .deleteButton{
