@@ -5,13 +5,13 @@
 <div class="dataContainer">
   <button (click)="newItem()">create item</button>
   <ul>
-  <li *ngFor="let item of items">{{item.title}}<button (click)="deleteItem(item)">delete</button> </li>
+  <li *ngFor="let item of items" (click)="selectedItem(item)">{{item.title}} <span *ngIf="item.description !== 'description...' || null"  class="description"> {{item.description}}</span><button class="deleteButton" (click)="deleteItem(item)">delete</button> </li>
   </ul>
 </div>
 <div id="line"></div>
 <div class="formContainer">
   <input type="text" [(ngModel)]="title">
   <textarea name="" id="" cols="30" rows="10" [(ngModel)]="description"></textarea>
-  <button>save</button>
+  <button (click)="save()">save</button>
 </div>
 </div>

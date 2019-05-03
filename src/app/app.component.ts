@@ -54,6 +54,19 @@ export class AppComponent implements OnInit {
     this.itemSelected = item;
     this.title = this.itemSelected.title;
     this.description = this.itemSelected.description;
-    this.actionType = 'update';
+    this.actionType = 'update';                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      
+  }
+
+  save() {
+    if(this.actionType === 'update') {
+      const itemToUpdate: Item = {title: this.title, description: this.description, id: this.itemSelected.id};
+      this.http.put(`${this.dbUrl}/${this.itemSelected.id}`, itemToUpdate).subscribe((response)=>{
+        this.itemSelected.title = itemToUpdate.title;
+        this.itemSelected.description = itemToUpdate.description;
+      })
+    } else {
+      const itemToCreate: Item = {title: this.title, description: this.description};
+      this.createItem(itemToCreate);
+    }
   }
 }
