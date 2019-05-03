@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import {Item} from './item.model';
+import { Component, OnInit, HostListener } from '@angular/core';
+import { Item } from './item.model';
 import { HttpClient } from '@angular/common/http';
 import { Action } from 'rxjs/internal/scheduler/Action';
 
@@ -19,54 +19,70 @@ export class AppComponent implements OnInit {
   actionType: action;
   itemSelected: Item;
 
-  constructor(private http: HttpClient){}
+  constructor(private http: HttpClient) { }
 
-  ngOnInit(){
+  ngOnInit() {
     this.getData();
     this.title = 'title...';
     this.description = 'description...';
   }
 
-  getData(){
-    this.http.get(this.dbUrl).subscribe((items: Item[])=>{// specificare sempre il tipo di dato ricevuto dalla chiamata
+  getData() {
+    this.http.get(this.dbUrl).subscribe((items: Item[]) => {// specificare sempre il tipo di dato ricevuto dalla chiamata
       this.items = items;//assegno l'array items alla proprietà this.item
     })
   }
-  createItem(item: Item){
-    this.http.post(this.dbUrl, item).subscribe((_item: Item)=>{// specificare sempre il tipo di dato ricevuto dalla chiamata
+  createItem(item: Item) {
+    this.http.post(this.dbUrl, item).subscribe((_item: Item) => {// specificare sempre il tipo di dato ricevuto dalla chiamata
       this.items.push(_item)
+    })
+  }
+
+  updateItem(item: Item) {
+    this.http.put(`${this.dbUrl}/${item.id}`, item).subscribe((response: Item) => {
+      this.itemSelected.title = response.title;
+      this.itemSelected.description = response.description;
+      this.itemSelected.done = response.done
+      
     })
   }
 
   deleteItem(item: Item) {
 
-    this.http.delete(this.dbUrl + `/${item.id}`).subscribe((response)=>{
-      this.items = this.items.filter((elem) => elem.id !== item.id)})
+    this.http.delete(this.dbUrl + `/${item.id}`).subscribe((response) => {
+      this.items = this.items.filter((elem) => elem.id !== item.id)
+    })
   }
 
-  newItem(){
+  newItem() {
     this.title = null;
     this.description = null;
     this.actionType = 'create';
   }
 
-  selectedItem(item: Item){
+  selectedItem(item: Item) {
     this.itemSelected = item;
+    
     this.title = this.itemSelected.title;
     this.description = this.itemSelected.description;
-    this.actionType = 'update';                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      
+    this.actionType = 'update';
   }
 
   save() {
-    if(this.actionType === 'update') {
-      const itemToUpdate: Item = {title: this.title, description: this.description, id: this.itemSelected.id};
-      this.http.put(`${this.dbUrl}/${this.itemSelected.id}`, itemToUpdate).subscribe((response)=>{
-        this.itemSelected.title = itemToUpdate.title;
-        this.itemSelected.description = itemToUpdate.description;
-      })
+    if (this.actionType === 'update') {
+      const itemToUpdate: Item = { title: this.title, description: this.description, id: this.itemSelected.id, done: this.itemSelected.done };
+     this.updateItem(itemToUpdate);
     } else {
-      const itemToCreate: Item = {title: this.title, description: this.description};
+      const itemToCreate: Item = { title: this.title, description: this.description, done: false };
       this.createItem(itemToCreate);
+
     }
   }
+
+  checkItem(item: Item) {
+    item.done = true;
+    this.updateItem(item);
+  }
+
+
 }
