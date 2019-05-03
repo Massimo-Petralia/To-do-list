@@ -1,11 +1,15 @@
 h1{
     background: red;
+    text-align: center;
 }
 
 
 .gridContainer{
     display: grid;
     grid-template-areas: 'data line form';
+    grid-template-columns: auto 3px auto;
+    justify-content: space-around;
+    column-gap: 100px;
 }
 
 .dataContainer{
@@ -23,7 +27,6 @@ h1{
     grid-area: form;
     display: flex;
     flex-direction: column;
-   
 }
 
 #titleInput{
